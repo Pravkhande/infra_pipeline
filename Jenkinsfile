@@ -1,7 +1,10 @@
 pipeline {
   agent any
   stages {
-    stage('Environment Deployment ') {
+    stage('Stage 1') {
+      environment {
+        abc = 'qwe'
+      }
       parallel {
         stage('Environment creation') {
           steps {
