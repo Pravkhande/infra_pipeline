@@ -10,12 +10,15 @@ pipeline {
           steps {
             sh '''#!/bin/bash
 
-echo "starting deployment of an env"'''
+echo "Creation of env"'''
           }
         }
         stage('Environment deployment') {
           steps {
             echo 'Deploying created environment'
+            sh '''#!/bin/bash
+
+echo "starting deployment of an env"'''
           }
         }
       }
@@ -25,6 +28,9 @@ echo "starting deployment of an env"'''
         stage('InfraParams.json') {
           steps {
             echo 'Create infraParams.json from payload'
+            sh '''#!/bin/bash
+
+echo "Creating input.json from payload"'''
           }
         }
         stage('Infra test(awspec)') {
