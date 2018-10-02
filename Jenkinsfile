@@ -19,7 +19,7 @@ echo "Creation of env"'''
             sh '''#!/bin/bash
 
 echo "starting deployment of an env"'''
-            sleep 1000
+            sleep 60
           }
         }
       }
@@ -36,7 +36,7 @@ echo "Creating input.json from payload"'''
         }
         stage('Infra test(awspec)') {
           steps {
-            sleep(time: 1000, unit: 'SECONDS')
+            sleep(time: 60, unit: 'SECONDS')
           }
         }
       }
