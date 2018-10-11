@@ -6,14 +6,14 @@ pipeline {
         abc = 'qwe'
       }
       parallel {
-        stage('Staging deployment') {
+        stage('1. Staging deployment') {
           steps {
             sh '''#!/bin/bash
 
 echo "Creation of env"'''
           }
         }
-        stage('Production deployment') {
+        stage('2. Production deployment') {
           steps {
             echo 'Deploying created environment'
             sh '''#!/bin/bash
@@ -26,7 +26,7 @@ echo "starting deployment of an env"'''
     }
     stage('Test (Infra test)') {
       parallel {
-        stage('InfraParams.json') {
+        stage('1. InfraParams.json') {
           steps {
             echo 'Create infraParams.json from payload'
             sh '''#!/bin/bash
@@ -34,7 +34,7 @@ echo "starting deployment of an env"'''
 echo "Creating input.json from payload"'''
           }
         }
-        stage('Infra test(awspec)') {
+        stage('2. Infra test(awspec)') {
           steps {
             sleep(time: 60, unit: 'SECONDS')
           }
@@ -43,12 +43,12 @@ echo "Creating input.json from payload"'''
     }
     stage('Output') {
       parallel {
-        stage('Check report ') {
+        stage('1. Check report ') {
           steps {
             echo 'Check test is completed and fetch report'
           }
         }
-        stage('Display spec report') {
+        stage('2. Display spec report') {
           steps {
             echo 'URL for Report should be given'
             sleep 30
