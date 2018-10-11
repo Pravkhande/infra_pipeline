@@ -1,19 +1,19 @@
 pipeline {
   agent any
   stages {
-    stage('Stage 1') {
+    stage('Deploy') {
       environment {
         abc = 'qwe'
       }
       parallel {
-        stage('Environment creation') {
+        stage('Staging deployment') {
           steps {
             sh '''#!/bin/bash
 
 echo "Creation of env"'''
           }
         }
-        stage('Environment deployment') {
+        stage('Production deployment') {
           steps {
             echo 'Deploying created environment'
             sh '''#!/bin/bash
@@ -24,7 +24,7 @@ echo "starting deployment of an env"'''
         }
       }
     }
-    stage('Stage 2') {
+    stage('Test (Infra test)') {
       parallel {
         stage('InfraParams.json') {
           steps {
@@ -41,7 +41,7 @@ echo "Creating input.json from payload"'''
         }
       }
     }
-    stage('Stage 3') {
+    stage('Output') {
       parallel {
         stage('Check report ') {
           steps {
